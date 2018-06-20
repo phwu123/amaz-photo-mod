@@ -1,0 +1,46 @@
+{
+  "name": "photo_gallery",
+  "version": "1.0.0",
+  "description": "Photo Gallery Component for Product Page",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "server": "nodemon server/index.js && npm run-script seed",
+    "build": "webpack -w",
+    "seed": "psql -d photos -U postgres < db/seed.sql"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "nodemon": "^1.17.5",
+    "pg": "^7.4.3",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-image-magnify": "^2.7.0",
+    "react-modal": "^3.4.5",
+    "sequelize": "^4.37.10",
+    "styled-components": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.1.0",
+    "jest-enzyme": "^6.0.1",
+    "jest-styled-components": "^5.0.1",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
