@@ -1,18 +1,14 @@
-const Sequelize = require('sequelize');
+// const MongoClient = require('mongodb').MongoClient;
+// let db = null;
+// const uri = 'mongodb://localhost:27017/photos';
 
-const db = new Sequelize('photos', 'postgres', 'root', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-})
+// MongoClient.connect(uri, (err, client) => {
+//   if (err) console.error('db connected');
+//   db = client.db('photos');
+//   console.log('connected to db ')
+// })
 
-db.authenticate()
-  .then(() => console.log('database connected'))
-  .catch((err) => console.log('database failed to connect', err))
 
-module.exports = {db:db}
+// module.export = {
+//   db
+// }

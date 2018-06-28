@@ -1,0 +1,29 @@
+version: "3"
+services:
+  web:
+    depends_on:
+      - db
+    image: amaz-mod
+    restart: on-failure
+    ports: 
+      - 1337:1337
+    networks:
+      - webnet
+  prox:
+    image: amaz-prox
+    restart: on-failure
+    ports:
+      - 3003:3003
+  db:
+    image: mariadb
+    restart: on-failure
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - webnet
+    ports:
+      - 3306:3306
+volumes: 
+  mariadb_data:
+networks:
+  webnet:

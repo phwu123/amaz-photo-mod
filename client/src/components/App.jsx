@@ -31,12 +31,16 @@ class App extends Component {
     if(typeof id === 'number') {
     axios.get(`http://localhost:1337/api/pictures/${id}`)
     .then((res) => {
+      console.log('res ', res)
       const pics = res.data[0].url.split(',');
       this.setState({
         main: pics[0],
         images: [...pics],
         mainModal: pics[0]
       })
+    })
+    .catch(err => {
+      console.log('err in get')
     })
   } else if(typeof id === 'string') {
     axios.get(`http://localhost:1337/api/pictures/name/${id}`)

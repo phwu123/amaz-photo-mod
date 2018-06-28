@@ -1,32 +1,22 @@
-const { db } = require('../config');
-const Sequelize = require('sequelize');
+const nano = require('nano')('http://root:root@localhost:5984');
+const { docs } = require('./fake.js');
+const photos = nano.db.use('photos');
 
-const Image = db.define('image', {
-  product_name: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
-},
-{
-  timestamps: false
+nano.db.destroy('photos', (err, body) => {
+  if (err) console.error('err in destroy', err);
+  nano.db.create('photos', (err, body) => {
+    if (err) console.error('err in db create ', err);
+    console.log('photos created');
+    // photos.bulk(docs, (err, body) => {
+    //   if (err) console.error('err inserting data ', err);
+    //   photos.insert(docs, (err, body) => {
+    //     if (err) console.error('err in insert ', err);
+    //     console.log('data inserted into photos ', body)
+    //   })
+    // })
   })
-const Picture = db.define('picture', {
-  url: {
-    type: Sequelize.TEXT,
-    allowNull: false
-  },
-},
-{
-  timestamps: false
-  })
-
-Picture.belongsTo(Image);
-
-db.sync({force:false})
-  .then(() => console.log('tables created successfully'))
-  .catch((err) => console.log('error creating tables', err))
+})
 
 module.exports = {
-  Picture:Picture,
-  Image:Image,
+  nano
 }
