@@ -1,30 +1,13 @@
 const faker = require('faker');
 const fs = require('fs')
 
-
-
-const imageGen = () => {
-  const stream = fs.createWriteStream('../../databases/MariaDB 10.3/data/photos/image.csv');
-  let i = 10000000;
-  const write = () => {
-    let ok = true;
-    do {
-      i -= 1;
-      if (i === 0) {
-        stream.write(`${faker.lorem.words()}\n`)
-      } else {
-        ok = stream.write(`${faker.lorem.words()}\n`)
-      }
-    } while (i > 0 && ok);
-    if (i > 0) {
-      stream.once('drain', write);
-    }
-  }
-  write();
+const fake = () => {
+  const adj = faker.commerce.productAdjective() + ' ' + faker.company.catchPhraseAdjective() + ' Cat';
+  return adj;
 }
 
 const picGen = () => {
-  const stream = fs.createWriteStream('../../databases/MariaDB 10.3/data/photos/pic.csv');
+  const stream = fs.createWriteStream('d:/csvs/pic.csv');
   let i = 10000000;
   let n = 0
   const write = () => {
@@ -32,10 +15,23 @@ const picGen = () => {
     do {
       n += 1;
       i -= 1;
+      const numType1 = () => {
+        let result = '';
+        const n = Math.trunc(Math.random() * 600 + 300);
+        const n2 = Math.trunc(n * (0.7 + Math.random() * 0.4));
+        return result += n + 'x' + n2;
+      }
+      
+      const numType2 = () => {
+        let result = '';
+        const n = Math.trunc(Math.random() * 600 + 300);
+        const n2 = Math.trunc(n * (0.7 + Math.random() * 0.4));
+        return result += n + '/' + n2;
+      }
       if (i === 0) {
-        stream.write(`"https://source.unsplash.com/320x240/?cats,https://loremflickr.com/320/240,http://lorempixel.com/320/240/cats",${n}\n`)
+        stream.write(`${n},${fake()},"https://source.unsplash.com/${numType1()}/?cats,https://loremflickr.com/${numType2()},http://placekitten.com/${numType2()}"\n`)
       } else {
-        ok = stream.write(`"https://source.unsplash.com/320x240/?cats,https://loremflickr.com/320/240,http://lorempixel.com/320/240/cats",${n}\n`)
+        ok = stream.write(`${n},${fake()},"https://source.unsplash.com/${numType1()}/?cats,https://loremflickr.com/${numType2()},http://placekitten.com/${numType2()}"\n`)
       }
     } while (i > 0 && ok);
     if (i > 0) {
@@ -47,4 +43,4 @@ const picGen = () => {
 
 
 //imageGen()
-//picGen()
+picGen()

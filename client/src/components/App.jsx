@@ -25,7 +25,9 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.getPictures(1);
+    const num = Math.ceil(Math.random() * 10000000)
+    this.getPictures(num);
+    console.log('cat ' + num + ' called')
   }
   getPictures = (id) => {
     if(typeof id === 'number') {

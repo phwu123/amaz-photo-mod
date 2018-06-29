@@ -11,9 +11,8 @@ MongoClient.connect(uri, (err, client) => {
 const pictureController = {
   'getId':((req, res) => {
     console.time('findone')
-    db.collection('pics').findOne({imageId: Number(req.params.id)}, (err, data) => {
+    db.collection('pics').findOne({id: Number(req.params.id)}, (err, data) => {
       if (err) console.log('err in get ', err);
-      console.log('data ', data);
       console.timeEnd('findone')
       res.status(200).send([data]);
     })
@@ -26,7 +25,7 @@ const pictureController = {
   'updatePicById':((req, res) => {
   }),
   'updateByName': ((req, res) => {
-    db.collection('images').update({product_name: req.params.name}, {$set: {}}, (err, data) => {
+    db.collection('pics').update({product_name: req.params.name}, {$set: {}}, (err, data) => {
       if (err) console.log('err in name update ', err);
       console.log('update done ? ', req.params.name)
       res.status(200).send(data);
