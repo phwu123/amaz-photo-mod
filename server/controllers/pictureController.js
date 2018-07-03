@@ -3,8 +3,8 @@ const { getdb } = require('../../db/config.js');
 const pictureController = {
   'getId':((req, res) => {
     // console.time('findone')
-    let db = getdb() 
-    db.collection('pics').findOne({id: req.params.id}, (err, data) => {
+    let db = getdb()
+    db.collection('pics').findOne({id: Number(req.params.id)}, (err, data) => {
       if (err) console.log('err in get ', err);
       // console.timeEnd('findone');
       res.status(200).send([data]);

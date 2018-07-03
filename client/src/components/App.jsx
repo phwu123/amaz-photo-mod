@@ -35,7 +35,7 @@ class App extends Component {
 
   getPictures = (id) => {
     if(typeof id === 'number') {
-    axios.get(`http://localhost:1337/api/id/${id}`)
+    axios.get(`http://192.168.99.100:1337/api/id/${id}`)
     .then((res) => {
       console.log(res)
       console.log('cat id ' + this.num() + ' ' + res.data[0].name + ' called')
@@ -47,10 +47,10 @@ class App extends Component {
       })
     })
     .catch(err => {
-      console.log('err in get')
+      console.log('err in get', err)
     })
   } else if(typeof id === 'string') {
-    axios.get(`http://localhost:1337/api/name/${id}`)
+    axios.get(`http://192.168.99.100:1337/api/name/${id}`)
     .then((res) => {
       const pics = res.data[0].url.split(',');
       this.setState({
