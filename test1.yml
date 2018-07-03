@@ -1,0 +1,22 @@
+config:
+  target: 'http://localhost:1337'
+  http:
+    pool: 10
+  phases:
+    - duration: 20
+      arrivalRate: 40
+  # variables: 
+  #   ids:
+      # - ["1", "100",]
+      # - ["10000", "7000000"] 
+      # - ["5000000", "4"]
+      # - [9000000", "9500000"]
+      # - ["10000000", "10000"]
+      # - ["1000", "6000000"] 
+scenarios:
+  - flow:
+    - loop: 
+      - get:
+          url: "/api/id/9000000"
+      count: 20
+      # over: ids

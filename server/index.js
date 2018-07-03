@@ -1,11 +1,11 @@
+require('newrelic');
 const express = require('express');
 const parser = require('body-parser');
 const path = require('path');
 const { Router } = require('./router');
 const helmet = require('helmet');
 const cors = require('cors');
-//require('../db/config.js');
-//require('../db/models/photos');
+require('../db/config.js');
 
 const app = express();
 app.use(helmet());

@@ -1,21 +1,20 @@
 const Router = require('express').Router();
 const { pictureController } = require('../controllers/pictureController')
 
-Router.route('/pictures/name/:name')
-  .get(pictureController.getName)
-  .put(pictureController.updatePicByName)
-
-Router.route('/pictures/:id')
+Router.route('/id/:id')
   .get(pictureController.getId)
+  .post(pictureController.makeCat)
   .put(pictureController.updatePicById)
-
-Router.route('/images/name/:name')
-  .put(pictureController.updateByName)
-  .delete(pictureController.deleteNameByName)
-
-Router.route('/images/id/:id')
-  .put(pictureController.updateNameById)
   .delete(pictureController.deleteNameById)
+
+Router.route('/ids')
+
+
+Router.route('/name/:name')
+  .get(pictureController.getName)
+  .post(pictureController.makeCat)
+  .put(pictureController.updatePicByName)
+  .delete(pictureController.deleteNameByName)
 
 
 

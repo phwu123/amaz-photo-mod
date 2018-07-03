@@ -24,16 +24,21 @@ class App extends Component {
       selectedMod: []
     };
   }
-  componentDidMount() {
-    const num = Math.ceil(Math.random() * 10000000)
-    this.getPictures(num);
-    console.log('cat ' + num + ' called')
+
+  num = () => {
+    return Math.ceil(Math.random() * 10000000)
   }
+
+  componentDidMount() {
+    this.getPictures(this.num())
+  }
+
   getPictures = (id) => {
     if(typeof id === 'number') {
-    axios.get(`http://localhost:1337/api/pictures/${id}`)
+    axios.get(`http://localhost:1337/api/id/${id}`)
     .then((res) => {
-      console.log('res ', res)
+      console.log(res)
+      console.log('cat id ' + this.num() + ' ' + res.data[0].name + ' called')
       const pics = res.data[0].url.split(',');
       this.setState({
         main: pics[0],
@@ -45,7 +50,7 @@ class App extends Component {
       console.log('err in get')
     })
   } else if(typeof id === 'string') {
-    axios.get(`http://localhost:1337/api/pictures/name/${id}`)
+    axios.get(`http://localhost:1337/api/name/${id}`)
     .then((res) => {
       const pics = res.data[0].url.split(',');
       this.setState({

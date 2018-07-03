@@ -1,4 +1,7 @@
 ### node etc ###
+newrelic.js
+newrelic_agent.log
+pic.csv
 
 *.sql
 *.csv
