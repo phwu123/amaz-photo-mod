@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('instance 1')
+    console.log('instance 2')
     this.getPictures(this.num())
   }
 
@@ -39,7 +39,7 @@ class App extends Component {
     axios.get(`/api/id/${id}`)
     .then((res) => {
       console.log(res)
-      console.log('cat id ' + this.num() + ' ' + res.data[0].name + ' called')
+      console.log('cat id ' + id + ' ' + res.data[0].name + ' called')
       const pics = res.data[0].url.split(',');
       this.setState({
         main: pics[0],
