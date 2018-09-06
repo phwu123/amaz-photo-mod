@@ -1,37 +1,10 @@
 version: "3"
 services:
-  # web:
-  #   build: .
-  #   links: 
-  #     - db
-  #   depends_on:
-  #     - db
-  #   image: photo
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #     ME_CONFIG_MONGODB_ADMI  NPASSWORD: example
-  #   command: bash -c "sleep 5; npm start"
-  #   restart: on-failure
-  #   ports: 
-  #     - 1337:1337
-  #   networks:
-  #     - webnet
-  # prox:
-  #   image: amaz-prox
-  #   restart: on-failure
-  #   ports:
-  #     - 3003:3003
   db:
     image: mongo:3.2.6
     volumes:
       - mongo-data:/data/db
     ports:
       - 27017:27017
-  # seed:
-  #   depends_on:
-  #     - db
-  #   build: ../../csvs
-  #   links:
-  #     - db
 volumes: 
   mongo-data:

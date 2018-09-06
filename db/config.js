@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 let db;
-const uri = 'mongodb://18.217.163.29:27017/photos';
+const uri = 'mongodb://user:pass@ip:port/photos?authSource=admin';
 
 
 MongoClient.connect(uri, { poolSize: 10 }, (err, client) => {

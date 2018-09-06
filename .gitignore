@@ -29,6 +29,7 @@ build/
 dist/
 static/bundle.js
 client/dist/bundle.js
+/client/dist
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
