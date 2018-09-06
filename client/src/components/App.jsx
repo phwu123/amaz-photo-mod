@@ -9,10 +9,11 @@ Modal.defaultStyles.overlay.left = "15%";
 Modal.defaultStyles.overlay.top = "10%";
 Modal.defaultStyles.overlay.bottom = "10%";
 Modal.defaultStyles.content.overflow = "hidden";
+import { render } from 'react-dom';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showModal: false,
       images: [],
@@ -30,16 +31,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('instance 2')
     this.getPictures(this.num())
   }
 
   getPictures = (id) => {
     if(typeof id === 'number') {
-    axios.get(`/api/id/${id}`)
+    axios.get(`http://18.191.138.148/api/id/${id}`)
     .then((res) => {
       console.log(res)
-      console.log('cat id ' + id + ' ' + res.data[0].name + ' called')
+      console.log('cat id ' + id + res.data[0].name + ' called')
       const pics = res.data[0].url.split(',');
       this.setState({
         main: pics[0],
@@ -51,7 +51,7 @@ class App extends Component {
       console.log('err in get', err)
     })
   } else if(typeof id === 'string') {
-    axios.get(`/api/name/${id}`)
+    axios.get(`http://18.191.125.208:1337/api/name/${id}`)
     .then((res) => {
       const pics = res.data[0].url.split(',');
       this.setState({
@@ -138,3 +138,10 @@ class App extends Component {
 }
 
 export default App;
+
+
+Modal.setAppElement('#root')
+
+if (typeof window !== 'undefined') {
+  render(<App />, document.getElementById('root'));
+}

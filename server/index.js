@@ -5,9 +5,11 @@ const path = require('path');
 const { Router } = require('./router');
 const helmet = require('helmet');
 const cors = require('cors');
+const morgan = require('morgan')
 require('../db/config.js');
 
 const app = express();
+app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
 app.options('*', cors())

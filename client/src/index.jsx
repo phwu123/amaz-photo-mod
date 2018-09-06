@@ -7,4 +7,6 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root')
 
-render(<App />, document.getElementById('root'));
+if (typeof window !== 'undefined') {
+  render(<App />, document.getElementById('root'));
+}
